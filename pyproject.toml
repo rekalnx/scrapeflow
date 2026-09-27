@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scrapeflow"
+version = "0.1.0"
+description = "Resilient asynchronous web scraping & data ingestion pipeline. Pure Python, zero dependencies."
+readme = "README.md"
+authors = [{ name = "Reihan Valentino", email = "valentinoreihan@gmail.com" }]
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.8"
+dependencies = []
+
+[project.scripts]
+scrapeflow = "scrapeflow.cli:main"
