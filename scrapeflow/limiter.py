@@ -3,7 +3,7 @@
 import asyncio
 import time
 from urllib.parse import urlparse
-from typing import Dict
+from typing import Dict, Optional
 
 
 class DomainRateLimiter:
@@ -13,9 +13,11 @@ class DomainRateLimiter:
         self.default_delay = default_delay
         self._last_access: Dict[str, float] = {}
         self._locks: Dict[str, asyncio.Lock] = {}
-        self._global_lock = asyncio.Lock()
+        self._global_lock: Optional[asyncio.Lock] = None
 
     async def _get_lock(self, domain: str) -> asyncio.Lock:
+        if self._global_lock is None:
+            self._global_lock = asyncio.Lock()
         async with self._global_lock:
             if domain not in self._locks:
                 self._locks[domain] = asyncio.Lock()
